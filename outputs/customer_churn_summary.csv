@@ -1,0 +1,4 @@
+Risk_Level,Customers,Average_Churn_Probability,Monthly_Charges_At_Risk
+Low,3553,0.106,0.0
+Medium,1503,0.44,62986.4
+High,1987,0.794,151864.5
