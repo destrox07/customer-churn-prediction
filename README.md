@@ -1,6 +1,8 @@
 # Customer Churn Prediction & Retention Analytics
 
 **Machine Learning · Python · Scikit-learn · Power BI · Data Analytics**
+<img width="955" height="542" alt="dashboard" src="https://github.com/user-attachments/assets/9fb4296c-8c25-47c9-929c-74d62b7c8ae1" />
+
 
 An end-to-end data analytics project that uses machine learning to identify customers at risk of leaving a telecommunications service. The project combines customer data exploration, churn prediction, risk segmentation, and an interactive Power BI dashboard to support data-driven retention strategies.
 
