@@ -1,10 +1,10 @@
 # Customer Churn Prediction & Retention Analytics
 
-**Machine Learning · Python · Scikit-learn · Power BI · Data Analytics**
-<img width="955" height="542" alt="dashboard" src="https://github.com/user-attachments/assets/9fb4296c-8c25-47c9-929c-74d62b7c8ae1" />
+**Machine Learning · Python · Scikit-learn · Power BI · Data Analytics · Docker**
 
+An end-to-end data analytics project that uses machine learning to identify customers at risk of leaving a telecommunications service. The project combines customer data exploration, churn prediction, risk segmentation, retention recommendations, and an interactive Power BI dashboard to support data-driven business decisions.
 
-An end-to-end data analytics project that uses machine learning to identify customers at risk of leaving a telecommunications service. The project combines customer data exploration, churn prediction, risk segmentation, and an interactive Power BI dashboard to support data-driven retention strategies.
+![Customer Churn Dashboard](screenshots/dashboard.png)
 
 ## Project Overview
 
@@ -21,7 +21,8 @@ This project explores customer churn patterns and develops a machine learning wo
 - Estimate individual customer churn probabilities.
 - Segment customers into low-, medium-, and high-risk groups.
 - Recommend retention actions based on customer risk.
-- Build an interactive Power BI dashboard for business analysis.
+- Build an interactive Power BI dashboard.
+- Package the analysis environment with Docker for reproducibility.
 
 ## Technologies Used
 
@@ -33,6 +34,7 @@ This project explores customer churn patterns and develops a machine learning wo
 | Scikit-learn | Model training and evaluation |
 | Jupyter Notebook | Analysis and experimentation |
 | Power BI | Interactive reporting and business intelligence |
+| Docker | Reproducible project environment |
 | Git & GitHub | Version control and project documentation |
 
 ## Dataset
@@ -48,42 +50,46 @@ The analysis investigates factors such as:
 - Payment methods
 - Customer churn behavior
 
-Dataset file:
-
-`data/WA_Fn-UseC_-Telco-Customer-Churn.csv`
+Dataset file: `data/WA_Fn-UseC_-Telco-Customer-Churn.csv`
 
 Please review the dataset's original license and redistribution terms before reusing or redistributing it.
 
 ## Project Workflow
 
 ### 1. Data Preparation
+
 - Load and inspect the dataset.
 - Check data types, missing values, and data quality.
 - Prepare features and the target variable for modeling.
 
 ### 2. Exploratory Data Analysis
+
 - Investigate churn distribution.
 - Compare churn across customer groups.
 - Explore relationships between contracts, tenure, charges, and churn.
 
 ### 3. Machine Learning
+
 - Prepare features for classification.
 - Train and evaluate Logistic Regression and Random Forest models.
 - Analyze classification performance using appropriate evaluation metrics.
 - Explore probability thresholds to support customer-risk identification.
 
 ### 4. Customer Risk Segmentation
-Generate churn probabilities and categorize customers into risk groups. The resulting analysis supports prioritization of customers who may benefit from retention efforts.
+
+Generate churn probabilities and categorize customers into risk groups. This supports prioritization of customers who may benefit from retention efforts.
 
 ### 5. Retention Strategy
+
 Use customer risk and available customer characteristics to suggest potential retention actions. These recommendations are decision-support suggestions, not guaranteed solutions.
 
 ### 6. Power BI Dashboard
-Present the analysis in an interactive business intelligence report, designed to help users explore churn patterns, monitor key indicators, and investigate retention priorities.
+
+Present the analysis in an interactive business intelligence report designed to help users explore churn patterns, monitor key indicators, and investigate retention priorities.
 
 ## Dashboard
 
-The Power BI report includes two main pages:
+The Power BI report includes two main pages.
 
 **Executive Overview**
 - High-level churn indicators
@@ -99,7 +105,7 @@ The Power BI report includes two main pages:
 
 Power BI report: `powerbi/Customer_Marketing_Analytics.pbix`
 
-![Customer Churn Dashboard](screenshots/dashboard.png)
+To explore the interactive report, open the file with Power BI Desktop.
 
 ## Project Structure
 
@@ -118,20 +124,20 @@ customer-churn-prediction/
 │   └── Customer_Marketing_Analytics.pbix
 ├── screenshots/
 │   └── dashboard.png
+├── .dockerignore
 ├── .gitignore
+├── Dockerfile
+├── requirements.txt
 └── README.md
 ```
 
 ## How to Run the Project
 
-### Requirements
+You can run the project using either Python locally or Docker.
 
-- Python 3.10 or a compatible Python version
-- Jupyter Notebook or JupyterLab
-- The Python libraries used in the notebook
-- Power BI Desktop to open and interact with the `.pbix` report
+### Option 1: Run with Docker (Recommended)
 
-### Installation
+**Prerequisites:** Install and start [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 Clone the repository:
 
@@ -140,42 +146,64 @@ git clone https://github.com/destrox07/customer-churn-prediction.git
 cd customer-churn-prediction
 ```
 
-Create and activate a virtual environment (optional but recommended):
+Build the Docker image:
 
 ```bash
-python -m venv .venv
+docker build -t customer-churn-prediction .
 ```
 
-On Windows PowerShell:
+Start Jupyter Notebook:
+
+**Windows PowerShell:**
 
 ```powershell
+docker run --rm -p 8888:8888 -v "${PWD}:/app" customer-churn-prediction
+```
+
+Open the local Jupyter URL displayed in your terminal, usually `http://localhost:8888`, and use the token shown in the terminal if prompted.
+
+Open `notebooks/customer_churn_prediction.ipynb` and run the cells in order, from top to bottom.
+
+The volume mount makes the project folder available inside the container, allowing changes to notebooks and files to persist on your computer.
+
+To stop the container, press `Ctrl+C` in the terminal running Docker.
+
+### Option 2: Run with Python
+
+**Prerequisites:** Python 3.10 or a compatible version.
+
+Create and activate a virtual environment:
+
+```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-Install the required libraries:
+Install the dependencies:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+pip install -r requirements.txt
 ```
 
-Launch Jupyter:
+Launch Jupyter Notebook:
 
 ```bash
 jupyter notebook
 ```
 
-Open `notebooks/customer_churn_prediction.ipynb` and run the cells **in order, from top to bottom**. Ensure the dataset path in the notebook matches the repository structure.
+Open `notebooks/customer_churn_prediction.ipynb` and execute the cells in order. Ensure the dataset path in the notebook matches the repository structure.
 
 To explore the dashboard, open `powerbi/Customer_Marketing_Analytics.pbix` with Power BI Desktop.
 
 ## Key Deliverables
 
-- An exploratory data analysis and machine learning notebook.
-- Churn probability predictions at customer level.
+- Exploratory data analysis and machine learning notebook.
+- Customer-level churn probability predictions.
 - Customer risk segmentation and retention-priority outputs.
 - Exported CSV files for reporting.
-- An interactive Power BI dashboard.
-- A reproducible project structure using Git.
+- Interactive Power BI dashboard.
+- Docker configuration for a reproducible analysis environment.
+- GitHub repository with project documentation and source files.
 
 ## Limitations
 
