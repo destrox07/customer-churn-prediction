@@ -1,3 +1,4 @@
+ HEAD
 \# Customer Churn Prediction
 
 
@@ -72,3 +73,4 @@ This project analyzes customer churn using Python, machine learning, and Power B
 
 This is an educational data analytics and machine learning project. Model performance and business recommendations should be evaluated before real-world use.
 
+=======
